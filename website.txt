@@ -1,0 +1,1244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SunnahInfo.com</title>
+
+<style>
+body{
+    margin:0;
+    font-family:Arial,sans-serif;
+    background:#f4f8f6;
+    color:#17382d;
+}
+
+header{
+    background:#075c42;
+    color:white;
+    text-align:center;
+    padding:35px 15px;
+}
+
+header h1{
+    font-size:42px;
+    margin:0;
+}
+
+header span{
+    color:#ffd34e;
+}
+
+nav{
+    background:#03271e;
+    text-align:center;
+    padding:15px;
+}
+
+nav a{
+    color:white;
+    text-decoration:none;
+    margin:0 15px;
+    font-weight:bold;
+}
+
+.hero{
+    text-align:center;
+    padding:45px 20px;
+    background:#e4f3eb;
+}
+
+.hero h2{
+    color:#075c42;
+    font-size:32px;
+}
+
+.search{
+    max-width:700px;
+    margin:25px auto;
+    display:flex;
+    gap:10px;
+}
+
+.search input{
+    flex:1;
+    padding:15px;
+    font-size:17px;
+    border:2px solid #087451;
+    border-radius:8px;
+}
+
+.search button{
+    padding:15px 25px;
+    background:#087451;
+    color:white;
+    border:0;
+    border-radius:8px;
+    cursor:pointer;
+    font-weight:bold;
+}
+
+.container{
+    max-width:1100px;
+    margin:auto;
+    padding:25px;
+}
+
+.title{
+    text-align:center;
+    color:#075c42;
+    margin:40px 0 25px;
+}
+
+.cards{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
+    gap:20px;
+}
+
+.card{
+    background:white;
+    padding:25px;
+    border-radius:12px;
+    box-shadow:0 4px 15px #00000015;
+}
+
+.card h3{
+    color:#087451;
+}
+
+.card button{
+    background:#087451;
+    color:white;
+    border:0;
+    padding:10px 15px;
+    border-radius:6px;
+    cursor:pointer;
+}
+
+.article{
+    display:none;
+    background:white;
+    padding:30px;
+    margin:30px 0;
+    border-radius:12px;
+    line-height:1.8;
+    box-shadow:0 4px 15px #00000015;
+}
+
+.article h2{
+    color:#087451;
+}
+
+.back{
+    background:#03271e;
+    color:white;
+    border:0;
+    padding:10px 18px;
+    border-radius:6px;
+    cursor:pointer;
+}
+
+.error{
+    color:#b00020;
+    font-weight:bold;
+    display:none;
+}
+
+footer{
+    margin-top:40px;
+    background:#03271e;
+    color:white;
+    text-align:center;
+    padding:30px;
+}
+
+@media(max-width:600px){
+    .search{
+        flex-direction:column;
+    }
+
+    header h1{
+        font-size:32px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<h1>Sunnah<span>Info</span>.com</h1>
+<p>Prophets • Seerah • Islamic Knowledge</p>
+</header>
+
+<nav>
+<a href="#home">Home</a>
+<a href="#prophets">Prophets</a>
+<a href="#about">About</a>
+</nav>
+
+<section class="hero" id="home">
+
+<h2>Search for a Prophet</h2>
+
+<p>
+Search by English name or another commonly used spelling.
+</p>
+
+<div class="search">
+
+<input
+id="searchInput"
+type="text"
+placeholder="Example: Musa, Moses, Nuh, Noah..."
+>
+
+<button onclick="searchProphet()">Search</button>
+
+</div>
+
+<p class="error" id="error">
+No Prophet found. Please try another name.
+</p>
+
+</section>
+
+<div class="container">
+
+<h2 class="title" id="prophets">
+Prophets
+</h2>
+
+<div class="cards" id="cards">
+
+<div class="card" data-name="adam">
+<h3>Adam (A.S.)</h3>
+<p>The first human being and a Prophet of Allah.</p>
+<button onclick="showProphet('adam')">Read Information</button>
+</div>
+
+<div class="card" data-name="idris">
+<h3>Idris (A.S.)</h3>
+<p>A truthful and righteous Prophet of Allah.</p>
+<button onclick="showProphet('idris')">Read Information</button>
+</div>
+
+<div class="card" data-name="nuh">
+<h3>Nuh (A.S.)</h3>
+<p>A Prophet who called his people to worship Allah alone.</p>
+<button onclick="showProphet('nuh')">Read Information</button>
+</div>
+
+<div class="card" data-name="hud">
+<h3>Hud (A.S.)</h3>
+<p>The Prophet sent to the people of Aad.</p>
+<button onclick="showProphet('hud')">Read Information</button>
+</div>
+
+<div class="card" data-name="salih">
+<h3>Salih (A.S.)</h3>
+<p>The Prophet sent to the people of Thamud.</p>
+<button onclick="showProphet('salih')">Read Information</button>
+</div>
+
+<div class="card" data-name="ibrahim">
+<h3>Ibrahim (A.S.)</h3>
+<p>A great Prophet known for faith and devotion to Allah.</p>
+<button onclick="showProphet('ibrahim')">Read Information</button>
+</div>
+
+<div class="card" data-name="lut">
+<h3>Lut (A.S.)</h3>
+<p>A Prophet who called his people towards righteousness.</p>
+<button onclick="showProphet('lut')">Read Information</button>
+</div>
+
+<div class="card" data-name="ismail">
+<h3>Ismail (A.S.)</h3>
+<p>The son of Ibrahim (A.S.) and a Prophet of Allah.</p>
+<button onclick="showProphet('ismail')">Read Information</button>
+</div>
+
+<div class="card" data-name="ishaq">
+<h3>Ishaq (A.S.)</h3>
+<p>The son of Ibrahim (A.S.) and a Prophet of Allah.</p>
+<button onclick="showProphet('ishaq')">Read Information</button>
+</div>
+
+<div class="card" data-name="yaqub">
+<h3>Yaqub (A.S.)</h3>
+<p>A Prophet of Allah and the father of Yusuf (A.S.).</p>
+<button onclick="showProphet('yaqub')">Read Information</button>
+</div>
+
+<div class="card" data-name="yusuf">
+<h3>Yusuf (A.S.)</h3>
+<p>A Prophet known for patience, purity and forgiveness.</p>
+<button onclick="showProphet('yusuf')">Read Information</button>
+</div>
+
+<div class="card" data-name="ayyub">
+<h3>Ayyub (A.S.)</h3>
+<p>A Prophet remembered for patience during trials.</p>
+<button onclick="showProphet('ayyub')">Read Information</button>
+</div>
+
+<div class="card" data-name="shuayb">
+<h3>Shuayb (A.S.)</h3>
+<p>A Prophet who called his people to honesty and worship of Allah.</p>
+<button onclick="showProphet('shuayb')">Read Information</button>
+</div>
+
+<div class="card" data-name="musa">
+<h3>Musa (A.S.)</h3>
+<p>The Prophet sent to Pharaoh and the Children of Israel.</p>
+<button onclick="showProphet('musa')">Read Information</button>
+</div>
+
+<div class="card" data-name="harun">
+<h3>Harun (A.S.)</h3>
+<p>The brother of Musa (A.S.) and a Prophet of Allah.</p>
+<button onclick="showProphet('harun')">Read Information</button>
+</div>
+
+<div class="card" data-name="dawud">
+<h3>Dawud (A.S.)</h3>
+<p>A Prophet and king who was given wisdom and the Zabur.</p>
+<button onclick="showProphet('dawud')">Read Information</button>
+</div>
+
+<div class="card" data-name="sulaiman">
+<h3>Sulaiman (A.S.)</h3>
+<p>A Prophet and king who was given great wisdom.</p>
+<button onclick="showProphet('sulaiman')">Read Information</button>
+</div>
+
+<div class="card" data-name="ilyas">
+<h3>Ilyas (A.S.)</h3>
+<p>A Prophet who called his people to worship Allah.</p>
+<button onclick="showProphet('ilyas')">Read Information</button>
+</div>
+
+<div class="card" data-name="alyasa">
+<h3>Al-Yasa (A.S.)</h3>
+<p>Mentioned in the Quran among the righteous.</p>
+<button onclick="showProphet('alyasa')">Read Information</button>
+</div>
+
+<div class="card" data-name="yunus">
+<h3>Yunus (A.S.)</h3>
+<p>A Prophet remembered for his supplication and repentance.</p>
+<button onclick="showProphet('yunus')">Read Information</button>
+</div>
+
+<div class="card" data-name="zakariya">
+<h3>Zakariya (A.S.)</h3>
+<p>A Prophet known for sincere prayer and devotion.</p>
+<button onclick="showProphet('zakariya')">Read Information</button>
+</div>
+
+<div class="card" data-name="yahya">
+<h3>Yahya (A.S.)</h3>
+<p>The son of Zakariya (A.S.) and a righteous Prophet.</p>
+<button onclick="showProphet('yahya')">Read Information</button>
+</div>
+
+<div class="card" data-name="isa">
+<h3>Isa (A.S.)</h3>
+<p>The son of Maryam (A.S.) and a Messenger of Allah.</p>
+<button onclick="showProphet('isa')">Read Information</button>
+</div>
+
+<div class="card" data-name="muhammad">
+<h3>Muhammad ﷺ</h3>
+<p>The final Prophet and Messenger of Allah.</p>
+<button onclick="showProphet('muhammad')">Read Information</button>
+</div>
+
+</div>
+
+
+<div class="article" id="article"></div>
+
+
+<h2 class="title" id="about">
+About SunnahInfo.com
+</h2>
+
+<div class="card">
+
+<p>
+SunnahInfo.com is an educational website about the Prophets,
+their missions and Islamic history.
+</p>
+
+<p>
+The information is presented as educational summaries. For
+detailed religious study, readers should consult the Quran,
+authentic Hadith and reliable Islamic scholarship.
+</p>
+
+</div>
+
+</div>
+
+
+<footer>
+
+<h2>SunnahInfo.com</h2>
+
+<p>Islamic Knowledge • Prophets • Seerah</p>
+
+<p>May Allah grant us beneficial knowledge. Ameen.</p>
+
+</footer>
+
+
+<script>
+
+const prophets = {
+
+adam: {
+title:"Adam (A.S.)",
+text:`
+<h2>Adam (A.S.)</h2>
+
+<p>
+Adam (A.S.) is described in the Quran as the first human being
+and a Prophet of Allah. Allah created Adam and taught him
+knowledge.
+</p>
+
+<p>
+The Quran describes the command given to the angels regarding
+Adam and the refusal of Iblis because of his arrogance.
+</p>
+
+<p>
+Adam and his wife were tested in Paradise. After their mistake,
+they turned to Allah in repentance, and Allah accepted their
+repentance.
+</p>
+
+<p>
+His story teaches repentance, humility, obedience and turning
+back to Allah.
+</p>
+
+<p><strong>Quran references:</strong>
+Al-Baqarah 2:30-39, Al-A'raf 7:11-27,
+Ta-Ha 20:115-123.</p>
+`
+},
+
+idris: {
+title:"Idris (A.S.)",
+text:`
+<h2>Idris (A.S.)</h2>
+
+<p>
+Idris (A.S.) is mentioned in the Quran as a truthful Prophet
+and a righteous servant of Allah.
+</p>
+
+<p>
+The Quran gives limited details about his life, so later
+stories should not be treated as established facts unless
+supported by reliable evidence.
+</p>
+
+<p><strong>Quran references:</strong>
+Maryam 19:56-57 and Al-Anbiya 21:85.</p>
+`
+},
+
+nuh: {
+title:"Nuh (A.S.)",
+text:`
+<h2>Nuh (A.S.)</h2>
+
+<p>
+Nuh (A.S.) was sent to his people and called them to worship
+Allah alone. He warned them against associating partners with
+Allah.
+</p>
+
+<p>
+The Quran states that Nuh remained among his people for
+nine hundred and fifty years. Despite their rejection, he
+continued calling them towards Allah.
+</p>
+
+<p>
+Allah commanded Nuh to build an Ark. When Allah's command came,
+Nuh and the believers entered the Ark. The Quran describes the
+great flood and the rescue of Nuh and the believers.
+</p>
+
+<p>
+The story of Nuh teaches patience, perseverance and trust
+in Allah.
+</p>
+
+<p><strong>Quran references:</strong>
+Surah Nuh 71, Hud 11:25-49,
+Al-Mu'minun 23:23-30.</p>
+`
+},
+
+hud: {
+title:"Hud (A.S.)",
+text:`
+<h2>Hud (A.S.)</h2>
+
+<p>
+Hud (A.S.) was sent to the people of Aad. He called them to
+worship Allah alone and warned them against arrogance and
+disobedience.
+</p>
+
+<p>
+The people rejected his message and persisted in wrongdoing.
+The Quran describes the punishment that came upon those who
+rejected the warning.
+</p>
+
+<p><strong>Quran references:</strong>
+Hud 11:50-60 and Al-A'raf 7:65-72.</p>
+`
+},
+
+salih: {
+title:"Salih (A.S.)",
+text:`
+<h2>Salih (A.S.)</h2>
+
+<p>
+Salih (A.S.) was sent to the people of Thamud. He called them
+to worship Allah alone.
+</p>
+
+<p>
+Allah gave the people of Thamud a clear sign in the form of
+the she-camel and commanded them not to harm it.
+</p>
+
+<p>
+Those who rejected the message and persisted in wrongdoing
+were punished.
+</p>
+
+<p><strong>Quran references:</strong>
+Hud 11:61-68 and Al-A'raf 7:73-79.</p>
+`
+},
+
+ibrahim: {
+title:"Ibrahim (A.S.)",
+text:`
+<h2>Ibrahim (A.S.)</h2>
+
+<p>
+Ibrahim (A.S.) was one of the great Prophets of Allah. He
+called his people away from idol worship and towards worship
+of Allah alone.
+</p>
+
+<p>
+Ibrahim faced many trials but remained obedient to Allah.
+His life is an example of faith, sacrifice and trust in Allah.
+</p>
+
+<p>
+The Quran mentions Ibrahim and his son Ismail raising the
+foundations of the Sacred House.
+</p>
+
+<p><strong>Quran references:</strong>
+Al-Baqarah 2:124-129,
+Al-Anbiya 21:51-70,
+As-Saffat 37:83-113.</p>
+`
+},
+
+lut: {
+title:"Lut (A.S.)",
+text:`
+<h2>Lut (A.S.)</h2>
+
+<p>
+Lut (A.S.) was a Prophet of Allah who called his people
+towards righteousness and obedience to Allah.
+</p>
+
+<p>
+The Quran describes the sinful behavior of his people and
+the warnings given to them by Lut.
+</p>
+
+<p>
+Allah saved Lut and the believers with him, while those who
+persisted in wrongdoing were punished.
+</p>
+
+<p><strong>Quran references:</strong>
+Hud 11:77-83 and Al-A'raf 7:80-84.</p>
+`
+},
+
+ismail: {
+title:"Ismail (A.S.)",
+text:`
+<h2>Ismail (A.S.)</h2>
+
+<p>
+Ismail (A.S.) was the son of Ibrahim (A.S.) and a Prophet of
+Allah. The Quran describes him as truthful in his promise.
+</p>
+
+<p>
+The story associated with Ibrahim and Ismail demonstrates
+obedience and submission to Allah.
+</p>
+
+<p>
+Ibrahim and Ismail raised the foundations of the Sacred House
+and prayed to Allah for acceptance.
+</p>
+
+<p><strong>Quran references:</strong>
+Maryam 19:54-55 and Al-Baqarah 2:125-129.</p>
+`
+},
+
+ishaq: {
+title:"Ishaq (A.S.)",
+text:`
+<h2>Ishaq (A.S.)</h2>
+
+<p>
+Ishaq (A.S.) was the son of Ibrahim (A.S.) and a Prophet of
+Allah. The Quran mentions the glad tidings given to Ibrahim
+about his birth.
+</p>
+
+<p>
+Allah blessed Ibrahim's family and brought many Prophets from
+his descendants.
+</p>
+
+<p><strong>Quran references:</strong>
+Hud 11:71-73 and As-Saffat 37:112-113.</p>
+`
+},
+
+yaqub: {
+title:"Yaqub (A.S.)",
+text:`
+<h2>Yaqub (A.S.)</h2>
+
+<p>
+Yaqub (A.S.) was a Prophet of Allah and the father of Yusuf
+(A.S.).
+</p>
+
+<p>
+When Yusuf was separated from him, Yaqub remained patient and
+continued to place his trust in Allah.
+</p>
+
+<p>
+His story teaches patience, hope and trust in Allah during
+difficult circumstances.
+</p>
+
+<p><strong>Quran reference:</strong>
+Surah Yusuf 12.</p>
+`
+},
+
+yusuf: {
+title:"Yusuf (A.S.)",
+text:`
+<h2>Yusuf (A.S.)</h2>
+
+<p>
+Yusuf (A.S.) was the son of Yaqub (A.S.). As a young boy,
+he saw a remarkable dream.
+</p>
+
+<p>
+His brothers became jealous of him and threw him into a well.
+He was later taken to Egypt.
+</p>
+
+<p>
+Yusuf faced difficult trials and temptation but chose
+obedience to Allah.
+</p>
+
+<p>
+He was imprisoned despite his innocence. Even in prison,
+he continued calling people towards Allah.
+</p>
+
+<p>
+Allah eventually gave Yusuf authority and responsibility in
+Egypt. His wisdom became important during a period of famine.
+</p>
+
+<p>
+When his brothers eventually came before him, Yusuf chose
+forgiveness instead of revenge.
+</p>
+
+<p><strong>Quran reference:</strong>
+Surah Yusuf, Chapter 12.</p>
+`
+},
+
+ayyub: {
+title:"Ayyub (A.S.)",
+text:`
+<h2>Ayyub (A.S.)</h2>
+
+<p>
+Ayyub (A.S.) was a Prophet of Allah who faced severe trials.
+Despite his difficulties, he remained patient and continued
+turning to Allah.
+</p>
+
+<p>
+The Quran mentions his supplication and Allah's response to
+his suffering.
+</p>
+
+<p>
+His story is an example of patience, prayer and trust in
+Allah's mercy.
+</p>
+
+<p><strong>Quran references:</strong>
+Al-Anbiya 21:83-84 and Sad 38:41-44.</p>
+`
+},
+
+shuayb: {
+title:"Shuayb (A.S.)",
+text:`
+<h2>Shuayb (A.S.)</h2>
+
+<p>
+Shuayb (A.S.) was sent to the people of Madyan. He called
+them to worship Allah and to be honest in their business
+dealings.
+</p>
+
+<p>
+He warned them against cheating in weights and measures and
+against taking people's rights unjustly.
+</p>
+
+<p><strong>Quran references:</strong>
+Hud 11:84-95 and Al-A'raf 7:85-93.</p>
+`
+},
+
+musa: {
+title:"Musa (A.S.)",
+text:`
+<h2>Musa (A.S.)</h2>
+
+<p>
+Musa (A.S.) was born among the Children of Israel during the
+rule of Pharaoh. The Quran describes how Allah protected him
+during his infancy.
+</p>
+
+<p>
+Allah chose Musa as a Messenger and commanded him to go to
+Pharaoh and call him towards the worship of Allah.
+</p>
+
+<p>
+Musa asked Allah to appoint his brother Harun (A.S.) as his
+helper, and Allah granted this request.
+</p>
+
+<p>
+Allah gave Musa clear signs, including the staff and the
+miraculous transformation of his hand.
+</p>
+
+<p>
+Allah saved Musa and the Children of Israel from Pharaoh.
+The Quran describes the crossing of the sea and the destruction
+of Pharaoh and his army.
+</p>
+
+<p>
+Allah gave Musa the Torah as guidance for the Children of Israel.
+</p>
+
+<p><strong>Quran references:</strong>
+Ta-Ha 20, Al-Qasas 28 and Al-A'raf 7:103-137.</p>
+`
+},
+
+harun: {
+title:"Harun (A.S.)",
+text:`
+<h2>Harun (A.S.)</h2>
+
+<p>
+Harun (A.S.) was the brother of Musa (A.S.) and a Prophet
+of Allah.
+</p>
+
+<p>
+Musa asked Allah to strengthen him by appointing Harun as his
+helper because Harun was eloquent in speech.
+</p>
+
+<p>
+Together, Musa and Harun were commanded to go to Pharaoh and
+call him towards Allah.
+</p>
+
+<p><strong>Quran references:</strong>
+Ta-Ha 20:29-36 and Al-Qasas 28:34.</p>
+`
+},
+
+dawud: {
+title:"Dawud (A.S.)",
+text:`
+<h2>Dawud (A.S.)</h2>
+
+<p>
+Dawud (A.S.) was a Prophet and king. Allah gave him wisdom,
+knowledge and the ability to judge between people.
+</p>
+
+<p>
+The Quran mentions Dawud defeating Jalut with Allah's help.
+</p>
+
+<p>
+Allah gave Dawud the Zabur. He was known for worship and
+praise of Allah.
+</p>
+
+<p><strong>Quran references:</strong>
+Al-Baqarah 2:251 and Sad 38:17-26.</p>
+`
+},
+
+sulaiman: {
+title:"Sulaiman (A.S.)",
+text:`
+<h2>Sulaiman (A.S.)</h2>
+
+<p>
+Sulaiman (A.S.) was the son of Dawud (A.S.) and a Prophet
+of Allah. Allah gave him wisdom and a great kingdom.
+</p>
+
+<p>
+The Quran mentions that Allah subjected the wind to Sulaiman
+and gave him knowledge and authority.
+</p>
+
+<p>
+Surah An-Naml describes the meeting between Sulaiman and the
+Queen of Sheba. Sulaiman invited her people towards worship
+of Allah.
+</p>
+
+<p><strong>Quran references:</strong>
+An-Naml 27, Saba 34 and Sad 38.</p>
+`
+},
+
+ilyas: {
+title:"Ilyas (A.S.)",
+text:`
+<h2>Ilyas (A.S.)</h2>
+
+<p>
+Ilyas (A.S.) called his people towards worshipping Allah alone
+and warned them against false gods.
+</p>
+
+<p><strong>Quran reference:</strong>
+As-Saffat 37:123-132.</p>
+`
+},
+
+alyasa: {
+title:"Al-Yasa (A.S.)",
+text:`
+<h2>Al-Yasa (A.S.)</h2>
+
+<p>
+Al-Yasa (A.S.) is mentioned in the Quran among the Prophets
+and righteous servants of Allah.
+</p>
+
+<p>
+The Quran gives limited details about his life.
+</p>
+
+<p><strong>Quran references:</strong>
+Al-An'am 6:86 and Sad 38:48.</p>
+`
+},
+
+yunus: {
+title:"Yunus (A.S.)",
+text:`
+<h2>Yunus (A.S.)</h2>
+
+<p>
+Yunus (A.S.) was a Prophet of Allah. The Quran mentions that
+he was swallowed by a great fish.
+</p>
+
+<p>
+In his difficult situation, Yunus called upon Allah. Allah
+answered his supplication and rescued him.
+</p>
+
+<p>
+His story teaches believers to turn to Allah in difficult
+circumstances.
+</p>
+
+<p><strong>Quran references:</strong>
+Al-Anbiya 21:87-88 and As-Saffat 37:139-148.</p>
+`
+},
+
+zakariya: {
+title:"Zakariya (A.S.)",
+text:`
+<h2>Zakariya (A.S.)</h2>
+
+<p>
+Zakariya (A.S.) was a Prophet of Allah known for sincere
+supplication and devotion.
+</p>
+
+<p>
+He prayed to Allah for a righteous child. Allah gave him the
+glad tidings of Yahya (A.S.).
+</p>
+
+<p><strong>Quran references:</strong>
+Maryam 19:2-15 and Aal-Imran 3:37-41.</p>
+`
+},
+
+yahya: {
+title:"Yahya (A.S.)",
+text:`
+<h2>Yahya (A.S.)</h2>
+
+<p>
+Yahya (A.S.) was the son of Zakariya (A.S.) and a righteous
+Prophet of Allah.
+</p>
+
+<p>
+The Quran describes him as being given wisdom and righteousness
+from a young age.
+</p>
+
+<p><strong>Quran references:</strong>
+Maryam 19:12-15 and Aal-Imran 3:39.</p>
+`
+},
+
+isa: {
+title:"Isa (A.S.)",
+text:`
+<h2>Isa (A.S.)</h2>
+
+<p>
+Isa (A.S.) was the son of Maryam (A.S.). The Quran describes
+his miraculous birth as a sign of Allah's power.
+</p>
+
+<p>
+Isa was sent to the Children of Israel as a Messenger of Allah.
+He called people towards worshipping Allah.
+</p>
+
+<p>
+Allah gave Isa various signs and miracles, and the Quran makes
+clear that these miracles occurred by Allah's permission.
+</p>
+
+<p>
+Islam teaches that Isa (A.S.) is the servant and Messenger
+of Allah and that Allah alone is worshipped.
+</p>
+
+<p><strong>Quran references:</strong>
+Surah Maryam 19, Aal-Imran 3 and Al-Maidah 5:110.</p>
+`
+},
+
+muhammad: {
+title:"Muhammad ﷺ",
+text:`
+<h2>Muhammad ﷺ</h2>
+
+<p>
+Muhammad ﷺ is the final Prophet and Messenger of Allah.
+Muslims follow his teachings and example in matters of faith,
+worship, character and daily life.
+</p>
+
+<h3>Early Life</h3>
+
+<p>
+Muhammad ﷺ was born in Makkah. Before receiving revelation,
+he was known among his people for honesty and trustworthiness.
+</p>
+
+<h3>The First Revelation</h3>
+
+<p>
+Allah sent revelation to Muhammad ﷺ through the Angel Jibril.
+The Quran was revealed to him over a period of years.
+</p>
+
+<h3>The Message</h3>
+
+<p>
+The Prophet ﷺ called people to worship Allah alone, believe
+in the Hereafter, establish justice, care for others and
+develop good character.
+</p>
+
+<h3>Migration to Madinah</h3>
+
+<p>
+After years of persecution in Makkah, the Prophet ﷺ migrated
+to Madinah. The Muslim community developed there and the
+message of Islam spread further.
+</p>
+
+<h3>His Character</h3>
+
+<p>
+The Quran describes the Prophet ﷺ as being upon a great
+character. His life included mercy, patience, justice,
+forgiveness and concern for people.
+</p>
+
+<h3>The Final Prophet</h3>
+
+<p>
+According to Islamic belief, Muhammad ﷺ is the final Prophet
+and Messenger of Allah. No prophet comes after him.
+</p>
+
+<p><strong>Quran references:</strong>
+Al-Ahzab 33:21, Al-Ahzab 33:40,
+Al-Qalam 68:4.</p>
+`
+}
+
+};
+
+
+function showProphet(name){
+
+    const prophet = prophets[name];
+
+    if(!prophet) return;
+
+    document.getElementById("cards").style.display="none";
+
+    const article=document.getElementById("article");
+
+    article.innerHTML=
+    '<button class="back" onclick="closeArticle()">← Back to Prophets</button>'
+    + prophet.text;
+
+    article.style.display="block";
+
+    article.scrollIntoView({
+        behavior:"smooth"
+    });
+}
+
+
+function closeArticle(){
+
+    document.getElementById("article").style.display="none";
+
+    document.getElementById("cards").style.display="grid";
+
+    document.getElementById("prophets")
+    .scrollIntoView({
+        behavior:"smooth"
+    });
+}
+
+
+function searchProphet(){
+
+    const input=document
+    .getElementById("searchInput")
+    .value
+    .toLowerCase()
+    .trim();
+
+    const error=document.getElementById("error");
+
+    if(input===""){
+        error.innerText="Please enter a Prophet's name.";
+        error.style.display="block";
+        return;
+    }
+
+    const aliases={
+
+        adam:"adam",
+        idris:"idris",
+        idrees:"idris",
+
+        nuh:"nuh",
+        noah:"nuh",
+        nooh:"nuh",
+
+        hud:"hud",
+        hood:"hud",
+
+        salih:"salih",
+        saleh:"salih",
+
+        ibrahim:"ibrahim",
+        ibraheem:"ibrahim",
+        abraham:"ibrahim",
+
+        lut:"lut",
+        lot:"lut",
+
+        ismail:"ismail",
+        ismael:"ismail",
+        ishmael:"ismail",
+
+        ishaq:"ishaq",
+        isaac:"ishaq",
+
+        yaqub:"yaqub",
+        yaqoob:"yaqub",
+        jacob:"yaqub",
+
+        yusuf:"yusuf",
+        yousuf:"yusuf",
+        joseph:"yusuf",
+
+        ayyub:"ayyub",
+        ayub:"ayyub",
+        job:"ayyub",
+
+        shuayb:"shuayb",
+        shuaib:"shuayb",
+
+        musa:"musa",
+        moosa:"musa",
+        moses:"musa",
+
+        harun:"harun",
+        haroon:"harun",
+        aaron:"harun",
+
+        dawud:"dawud",
+        dawood:"dawud",
+        david:"dawud",
+
+        sulaiman:"sulaiman",
+        suleiman:"sulaiman",
+        solomon:"sulaiman",
+
+        ilyas:"ilyas",
+        elias:"ilyas",
+
+        alyasa:"alyasa",
+        elisha:"alyasa",
+
+        yunus:"yunus",
+        younus:"yunus",
+        jonah:"yunus",
+
+        zakariya:"zakariya",
+        zakaria:"zakariya",
+        zechariah:"zakariya",
+
+        yahya:"yahya",
+        yahia:"yahya",
+        john:"yahya",
+
+        isa:"isa",
+        essa:"isa",
+        jesus:"isa",
+
+        muhammad:"muhammad",
+        mohammad:"muhammad",
+        mohammed:"muhammad"
+
+    };
+
+    let key=aliases[input];
+
+    if(!key){
+
+        for(const alias in aliases){
+
+            if(alias.includes(input) || input.includes(alias)){
+                key=aliases[alias];
+                break;
+            }
+
+        }
+
+    }
+
+    if(key && prophets[key]){
+
+        error.style.display="none";
+
+        showProphet(key);
+
+    }else{
+
+        error.innerText=
+        "No Prophet found. Try names such as Musa, Moses, Nuh, Noah or Muhammad.";
+
+        error.style.display="block";
+
+    }
+
+}
+
+
+document
+.getElementById("searchInput")
+.addEventListener("keydown",function(event){
+
+    if(event.key==="Enter"){
+        searchProphet();
+    }
+
+});
+
+</script>
+
+</body>
+</html>
